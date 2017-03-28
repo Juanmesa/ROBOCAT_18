@@ -1,0 +1,90 @@
+int pin1 = 4;
+int pin2 = 3;
+int pin3 = 2;
+int IN1 = 8;
+int IN2 = 9;
+int IN3 = 5;    // Input3 conectada al pin 5
+int IN4 = 6;    // Input4 conectada al pin 4 
+int ENB = 7;
+int ENA = 10;
+int value;
+// ENB conectada al pin 3 de Arduino
+void setup()
+{
+ pinMode (ENB, OUTPUT); 
+ pinMode (IN3, OUTPUT);
+ pinMode (IN4, OUTPUT);
+ pinMode (IN2, OUTPUT);
+ pinMode (IN1, OUTPUT);
+ pinMode (ENA, OUTPUT);
+ pinMode(pin1,INPUT);
+ pinMode(pin2,INPUT);
+ pinMode(pin3,INPUT);
+ digitalWrite (IN1, LOW);
+ digitalWrite (IN2, HIGH);                                
+ digitalWrite (IN3, HIGH);
+ digitalWrite (IN4, LOW);
+ 
+}
+void loop()
+{
+  value = digitalRead(pin1);  //lectura digital de pin
+ 
+  //mandar mensaje a puerto serie en función del valor leido
+  if (value == HIGH) {
+      Serial.println("BLANCO1");
+      delay(1000);
+      analogWrite (ENA,0);
+      analogWrite (ENB,0); 
+      delay(1000);
+  }
+
+  //Preparamos la salida para que el motor gire en un sentido
+  
+  
+  if(value == HIGH) {
+      Serial.println("NEGRO1");
+      delay(1000);
+       analogWrite(ENB,255);
+       analogWrite(ENA,255);
+       delay(1000);
+  }
+  if(value == HIGH) {
+      Serial.println("BLANCO2");
+      delay(1000);
+      analogWrite (ENA,0);
+      analogWrite (ENB,0); 
+      delay(1000);
+  }
+
+   
+   if (value == HIGH) {
+    Serial.println("NEGRO2");
+    delay(1000);
+    analogWrite(ENB,255);
+    analogWrite(ENA,255);
+    delay(1000);
+      }
+
+   if (value == HIGH) {
+      Serial.println("BLANCO3");
+      delay(1000);
+      analogWrite (ENA,0);
+      analogWrite (ENB,0); 
+      delay(1000);
+   }      
+       // Aplicamos PWM al pin ENB, haciendo girar el motor, cada 2 seg aumenta la velocidad
+  
+
+    if (value == HIGH) {
+      Serial.println("NEGRO3");
+      delay(1000);
+      analogWrite (ENA,255);
+      analogWrite (ENB,255); 
+      delay(1000);
+    }
+}
+
+  
+  
+   

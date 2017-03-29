@@ -1,42 +1,42 @@
-// sensor de colores 
+/* Aquí està millor explicat, afegeixo els canvis
+// http://howtomechatronics.com/tutorials/arduino/arduino-color-sensing-tutorial-tcs230-tcs3200-color-sensor/
+// s0 i s1 controla la frequency - scaling,
+//      s0 | s1
+//      L  | L    : Power down
+//      L  | H    : 2%
+//      H  | L    : 20%
+//      H  | H    : 100%
+//
+// combinacions
+//      s2 | s3
+//      L  | L    : red
+//      L  | H    : blue
+//      H  | L    : clear (no filter)
+//      H  | H    : green */
+
+// En aquestes dues pàgines
+//      http://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html
+//      http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__interrupts.html
+//      Està explicada la funció interrupt al microprocessador
+//
+// Aquesta pàgina també pot ser interessant
+//  http://www.toptechboy.com/arduino/lesson-15-super-cool-arduino-color-sensor-project/
 int s0=3,s1=4,s2=5,s3=6;
 int flag=0;
 int counter=0;
 int countR=0,countG=0,countB=0;
-int value;
-//????
-int pin1=4,pin2=3,pin3=2;
-//DRIVER
-int IN1=8,IN2=9,IN3=5,IN4=6;            
-int ENB = 7,ENA=10;                   
-// ENB conectada al pin 3 de Arduino
+//    Aquí tens per què utilitza el Serial.begin(250000) enlloc
+//    del Serial.begin(9600)
+//    http://playground.arduino.cc/Learning/DMXSerial
+
 void setup()
 {
-  Serial.begin(250000);
-  //DRIVER
- pinMode (ENB, OUTPUT); 
- pinMode (IN3, OUTPUT); 
- pinMode (IN4, OUTPUT);
- pinMode (IN2, OUTPUT);
- pinMode (IN1, OUTPUT);
- pinMode (ENA, OUTPUT);
- digitalWrite (IN1, LOW);
- digitalWrite (IN2, HIGH);                                
- digitalWrite (IN3, HIGH);
- digitalWrite (IN4, LOW);
- //????
- pinMode(pin1,INPUT);
- pinMode(pin2,INPUT);
- pinMode(pin3,INPUT);
- //sensor de colores
- pinMode(s0,OUTPUT);
- pinMode(s1,OUTPUT);
- pinMode(s2,OUTPUT);
- pinMode(s3,OUTPUT);
- 
+Serial.begin(250000);
+pinMode(s0,OUTPUT);
+pinMode(s1,OUTPUT);
+pinMode(s2,OUTPUT);
+pinMode(s3,OUTPUT);
 }
-
-//sensor de colores
 void TCS()
 {
   digitalWrite(s1,HIGH);
@@ -144,67 +144,4 @@ void loop()
      
     
     
-  //DRIVER + SENSOR COLORES BLANCO 
-
-void loop()
-{
-  value = digitalRead(pin1);  //lectura digital de pin
- 
-  //mandar mensaje a puerto serie en función del valor leido
-  if (value == HIGH) {
-      Serial.println("BLANCO1");
-      delay(1000);
-      analogWrite (ENA,0);
-      analogWrite (ENB,0); 
-      delay(1000);
-  }
-
-  //Preparamos la salida para que el motor gire en un sentido
   
-  
-  if(value == HIGH) {
-      Serial.println("NEGRO1");
-      delay(1000);
-       analogWrite(ENB,255);
-       analogWrite(ENA,255);
-       delay(1000);
-  }
-  if(value == HIGH) {
-      Serial.println("BLANCO2");
-      delay(1000);
-      analogWrite (ENA,0);
-      analogWrite (ENB,0); 
-      delay(1000);
-  }
-
-   
-   if (value == HIGH) {
-    Serial.println("NEGRO2");
-    delay(1000);
-    analogWrite(ENB,255);
-    analogWrite(ENA,255);
-    delay(1000);
-      }
-
-   if (value == HIGH) {
-      Serial.println("BLANCO3");
-      delay(1000);
-      analogWrite (ENA,0);
-      analogWrite (ENB,0); 
-      delay(1000);
-   }      
-       // Aplicamos PWM al pin ENB, haciendo girar el motor, cada 2 seg aumenta la velocidad
-  
-
-    if (value == HIGH) {
-      Serial.println("NEGRO3");
-      delay(1000);
-      analogWrite (ENA,255);
-      analogWrite (ENB,255); 
-      delay(1000);
-    }
-}
-
-  
-  
-   

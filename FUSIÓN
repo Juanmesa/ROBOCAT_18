@@ -1,42 +1,27 @@
-// sensor de colores 
-int s0=3,s1=4,s2=5,s3=6;
+//sensor de blanc o negre
+int sensorbn1=2,sensorbn2=3,sensorbn4=4;
+//driver
+int IN1 = 5;
+int IN2 = 6;
+int IN3 = 7;    // Input3 conectada al pin 5
+int IN4 = 8;    // Input4 conectada al pin 4 
+int ENB = 9;
+int ENA = 10;
+//sensor de colors
+int value;
+int s0=11,s1=12,s2=13,s3=A0;
 int flag=0;
 int counter=0;
 int countR=0,countG=0,countB=0;
-int value;
-//????
-int pin1=4,pin2=3,pin3=2;
-//DRIVER
-int IN1=8,IN2=9,IN3=5,IN4=6;            
-int ENB = 7,ENA=10;                   
-// ENB conectada al pin 3 de Arduino
+
 void setup()
 {
-  Serial.begin(250000);
-  //DRIVER
- pinMode (ENB, OUTPUT); 
- pinMode (IN3, OUTPUT); 
- pinMode (IN4, OUTPUT);
- pinMode (IN2, OUTPUT);
- pinMode (IN1, OUTPUT);
- pinMode (ENA, OUTPUT);
- digitalWrite (IN1, LOW);
- digitalWrite (IN2, HIGH);                                
- digitalWrite (IN3, HIGH);
- digitalWrite (IN4, LOW);
- //????
- pinMode(pin1,INPUT);
- pinMode(pin2,INPUT);
- pinMode(pin3,INPUT);
- //sensor de colores
- pinMode(s0,OUTPUT);
- pinMode(s1,OUTPUT);
- pinMode(s2,OUTPUT);
- pinMode(s3,OUTPUT);
- 
+Serial.begin(250000);
+pinMode(s0,OUTPUT);
+pinMode(s1,OUTPUT);
+pinMode(s2,OUTPUT);
+pinMode(s3,OUTPUT);
 }
-
-//sensor de colores
 void TCS()
 {
   digitalWrite(s1,HIGH);
@@ -133,21 +118,15 @@ void loop()
              Serial.print("\n");
              delay(1000);
        }
-      else
-      {
-          Serial.print("Black");
-          Serial.print("\n");
-          delay(1000);
-      }
   }
-}
-     
-    
-    
-  //DRIVER + SENSOR COLORES BLANCO 
+  else
+  {
+      Serial.print("Black");
+      Serial.print("\n");
+      delay(1000);
+  }
+  
 
-void loop()
-{
   value = digitalRead(pin1);  //lectura digital de pin
  
   //mandar mensaje a puerto serie en función del valor leido

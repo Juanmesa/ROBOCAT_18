@@ -136,7 +136,7 @@ void loop() {
 
 //blanco
 
- if ((freqR>200)&&(freqG>260)&&(freqB>250))
+ if ((freqR>200)&&(freqG>240)&&(freqB>230))
 
        {
 
@@ -148,15 +148,15 @@ void loop() {
 
              digitalWrite(12,LOW);
 
-//rosa           
+//rojo           
 
         }
 
-       else if ((freqR>170)&&(freqG<160)&&(freqB<250))
+       else if ((freqR>180)&&(freqG<160)&&(freqB<170))
 
         {
 
-             Serial.print("rosa");
+             Serial.print("rojo");
 
              Serial.print("\n");
 
@@ -168,7 +168,7 @@ void loop() {
 
         }
 
-        else if ((freqR<30)&&(freqG<30)&&(freqB<30))
+        else if ((freqR<100)&&(freqG<200)&&(freqB<200))
 
         {
 
@@ -186,6 +186,9 @@ void loop() {
 
   
 
+  
+
+}
   
 
 }

@@ -20,8 +20,8 @@ int velocidad;
 
 void setup(){
   Serial.begin(9600);
-  pinMode(5, OUTPUT); /*activación del pin 9 como salida: para el pulso ultrasónico*/
-  pinMode(7, INPUT); /*activación del pin 8 como entrada: tiempo del rebote del ultrasonido*/
+  pinMode(7, OUTPUT); /*activación del pin 9 como salida: para el pulso ultrasónico*/
+  pinMode(6, INPUT); /*activación del pin 8 como entrada: tiempo del rebote del ultrasonido*/
   //LED
   pinMode(2, OUTPUT);
   //Movimiento del coche
@@ -33,11 +33,11 @@ void setup(){
 void loop(){
 
 
-  digitalWrite(5,LOW); /* Por cuestión de estabilización del sensor*/
+  digitalWrite(7,LOW); /* Por cuestión de estabilización del sensor*/
   delayMicroseconds(5);
-  digitalWrite(5, HIGH); /* envío del pulso ultrasónico*/
+  digitalWrite(7, HIGH); /* envío del pulso ultrasónico*/
   delayMicroseconds(10);
-  tiempo=pulseIn(7, HIGH); /* Función para medir la longitud del pulso entrante. Mide el tiempo que transcurrido entre el envío
+  tiempo=pulseIn(6, HIGH); /* Función para medir la longitud del pulso entrante. Mide el tiempo que transcurrido entre el envío
   del pulso ultrasónico y cuando el sensor recibe el rebote, es decir: desde que el pin 8 empieza a recibir el rebote, HIGH, hasta que
   deja de hacerlo, LOW, la longitud del pulso entrante*/
   distancia= int(0.017*tiempo); /*fórmula para calcular la distancia obteniendo un valor entero*/

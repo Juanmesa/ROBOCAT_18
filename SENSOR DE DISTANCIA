@@ -1,0 +1,68 @@
+
+// Aprovechando que la velocidad de dicho ultrasonido en el aire es de valor 340 m/s, o 0,034 cm/microseg (ya que trabajaremos con centímetros y microsegundos). Para calcular la distancia, recordaremos que v=d/t (definición de velocidad: distancia recorrida en un determinado tiempo).
+//De la fórmula anterior despejamos d, obteniendo d=v·t, siendo v la constante anteriormente citada y t el valor devuelto por el sensor a la placa Arduino.
+//También habrá que dividir el resultado entre 2 dado que el tiempo recibido es el tiempo de ida y vuelta.
+//El sensor consta de 4 pines: "VCC" conectado a la salida de 5V de la placa, "Trig" conectado al pin digital de la placa encargado de enviar el pulso ultrasónico, "Echo" al pin de entrada digital que recibirá el eco de dicho pulso y "GND" a tierra.
+//ojo! NO CALCULA CORRECTAMENTE LAS DISTANCIAS.AHORA SÍ.;)
+//Enciende un LED (2) si la distancia < 20cm.
+long distancia;
+long tiempo;
+
+//El coche se mueve y no choca con objeto < 20cm de distancia.
+#include <Servo.h>
+
+Servo servoVal;
+Servo servoVal2;
+int velocidad;
+
+
+
+
+void setup(){
+  Serial.begin(9600);
+  pinMode(5, OUTPUT); /*activación del pin 9 como salida: para el pulso ultrasónico*/
+  pinMode(7, INPUT); /*activación del pin 8 como entrada: tiempo del rebote del ultrasonido*/
+  //LED
+  pinMode(2, OUTPUT);
+  //Movimiento del coche
+   Serial.begin (9600);
+ servoVal.attach(6);
+ servoVal2.attach(7);
+}
+
+void loop(){
+
+
+  digitalWrite(5,LOW); /* Por cuestión de estabilización del sensor*/
+  delayMicroseconds(5);
+  digitalWrite(5, HIGH); /* envío del pulso ultrasónico*/
+  delayMicroseconds(10);
+  tiempo=pulseIn(7, HIGH); /* Función para medir la longitud del pulso entrante. Mide el tiempo que transcurrido entre el envío
+  del pulso ultrasónico y cuando el sensor recibe el rebote, es decir: desde que el pin 8 empieza a recibir el rebote, HIGH, hasta que
+  deja de hacerlo, LOW, la longitud del pulso entrante*/
+  distancia= int(0.017*tiempo); /*fórmula para calcular la distancia obteniendo un valor entero*/
+  /*Monitorización en centímetros por el monitor serial*/
+ 
+  Serial.println("Distancia ");
+  Serial.println(distancia);
+  Serial.println(" cm");
+  delay(500);
+  
+ 
+/*  servoVal.write (180); //El coche se mueve recto.
+  servoVal2.write (0);
+  digitalWrite (2,LOW);
+  
+ 
+ if (distancia < 25) {
+   
+  
+  digitalWrite (2,HIGH); //Se enciende una luz roja
+  servoVal.write (90); //El coche se mueve hacia atrás girando.
+  servoVal2.write (180);
+  delay(1500);
+  
+ 
+ } */
+ 
+}

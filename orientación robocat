@@ -29,11 +29,11 @@ void loop(){
   Serial.println(" cm");
   delay(500);
 
-  do {
+  //do {
     // girar hacia la derecha 
-    }
+    //}
 
-  while ( distancia < 50 )
+  //while ( distancia < 50 )
   // para gira 90 
   // if (distancia>70)
   //girar 180 

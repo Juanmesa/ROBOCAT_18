@@ -10,10 +10,48 @@ void setup(){
   //Movimiento del coche
    Serial.begin (9600);
 
+void leyendo_sensor_distancia (void);
+void lecturas_sensor_blanco_negro (void);
 }
 
 void loop(){
   
+  leyendo_sensor_distancia ();
+  lecturas_sensor_blanco_negro ();
+ //comienzo del programa de orientación
+ 
+ do { girar sentido horario }
+ while (distancia > 50);
+ parar
+ 
+ do { girar sentido horario }
+ while (distancia > 50);
+ gira 90º en sentido horario
+ 
+ if (distancia >100)
+ {gira 180º en sentido horario}
+ 
+ //comienzo del programa de cargar bolas de forma manual
+ 
+ 
+
+
+
+  //do {
+    // girar hacia la derecha 
+    //}
+
+  //while ( distancia < 50 )
+  // para gira 90 
+  // if (distancia>70)
+  //girar 180 
+  // else if (distancia < 70 )
+
+
+}
+
+void leyendo_sensor_distancia (){
+
   digitalWrite(7,LOW); /* Por cuestión de estabilización del sensor*/
   delayMicroseconds(5);
   digitalWrite(7, HIGH); /* envío del pulso ultrasónico*/
@@ -29,15 +67,14 @@ void loop(){
   Serial.println(" cm");
   delay(500);
 
-  //do {
-    // girar hacia la derecha 
-    //}
-
-  //while ( distancia < 50 )
-  // para gira 90 
-  // if (distancia>70)
-  //girar 180 
-  // else if (distancia < 70 )
-
-
 }
+
+void lecturas_sensor_blanco_negro () {
+
+
+
+
+
+
+
+

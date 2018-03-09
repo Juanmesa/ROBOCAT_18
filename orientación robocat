@@ -10,13 +10,31 @@ int sensor3;
 int sensor4;
 int error;
 
+//asignación de los pines del driver
+int IN1 = ;    // Input3 conectada al pin 
+int IN2 = ;    // Input4 conectada al pin  
+int ENA = ;    // ENB conectada al pin  de Arduino
+int IN3 = ;    // Input3 conectada al pin 
+int IN4 = ;    // Input4 conectada al pin  
+int ENB = ;    // ENB conectada al pin  de Arduino
+
 void leyendo_sensor_distancia (void);
 void lecturas_sensor_blanco_negro (void);
 void trayecto_carga_manual (void);
 
 void setup(){
-  
-  
+
+
+ //activación de los pines del driver
+ pinMode (ENA, OUTPUT); 
+ pinMode (IN1, OUTPUT);
+ pinMode (IN2, OUTPUT);
+ pinMode (ENB, OUTPUT); 
+ pinMode (IN3, OUTPUT);
+ pinMode (IN4, OUTPUT);
+ 
+ 
+ 
 #ifdef _DEBUG_ 
  Serial.begin(9600); //Enable Serial Communications
 #endif

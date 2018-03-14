@@ -11,12 +11,12 @@ int sensor4;
 int error;
 
 //asignación de los pines del driver
-int IN1 = ;    // Input3 conectada al pin 
-int IN2 = ;    // Input4 conectada al pin  
-int ENA = ;    // ENB conectada al pin  de Arduino
-int IN3 = ;    // Input3 conectada al pin 
-int IN4 = ;    // Input4 conectada al pin  
-int ENB = ;    // ENB conectada al pin  de Arduino
+int IN1 = 10    // Input3 conectada al pin 
+int IN2 = 9    // Input4 conectada al pin  
+int ENA = 11    // ENB conectada al pin  de Arduino
+int IN3 = 5    // Input3 conectada al pin 
+int IN4 = 4    // Input4 conectada al pin  
+int ENB = 3    // ENB conectada al pin  de Arduino
 
 void leyendo_sensor_distancia (void);
 void lecturas_sensor_blanco_negro (void);

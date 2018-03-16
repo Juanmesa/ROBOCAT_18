@@ -1,5 +1,3 @@
-
-
 #define _DEBUG_
 
 long distancia;
@@ -11,16 +9,17 @@ int sensor4;
 int error;
 
 //asignación de los pines del driver
-int IN1 = 10    // Input3 conectada al pin 
-int IN2 = 9    // Input4 conectada al pin  
-int ENA = 11    // ENB conectada al pin  de Arduino
-int IN3 = 5    // Input3 conectada al pin 
-int IN4 = 4    // Input4 conectada al pin  
-int ENB = 3    // ENB conectada al pin  de Arduino
+int IN1 = 10;    // Input3 conectada al pin 
+int IN2 = 9;    // Input4 conectada al pin  
+int ENA = 11;    // ENB conectada al pin  de Arduino
+int IN3 = 5;    // Input3 conectada al pin 
+int IN4 = 4;    // Input4 conectada al pin  
+int ENB = 3;    // ENB conectada al pin  de Arduino
 
 void leyendo_sensor_distancia (void);
-void lecturas_sensor_blanco_negro (void);
-void trayecto_carga_manual (void);
+void orientacion (void);
+//void lecturas_sensor_blanco_negro (void);
+//void trayecto_carga_manual (void);
 
 void setup(){
 
@@ -47,37 +46,94 @@ void setup(){
   
   
    
-   
-   
-   
-
-
-
-
 }
 
 void loop(){
   
   leyendo_sensor_distancia ();
-  lecturas_sensor_blanco_negro ();
-  trayecto_carga_manual ();
+  orientacion ();
+ // lecturas_sensor_blanco_negro ();
+ // trayecto_carga_manual ();
   
  //comienzo del programa de orientación
- 
- do { girar sentido horario }
+
+}
+void orientacion (){
+   digitalWrite (IN3, LOW);
+   digitalWrite (IN4, HIGH);
+   digitalWrite (IN1, HIGH);
+   digitalWrite (IN2, LOW);
+if (distancia<50) 
+{
+ Serial.println("distancia<50 girando");
+analogWrite(ENA,55);
+  analogWrite(ENB,45);
+  delay(1000);
+analogWrite(ENA,0);
+  analogWrite(ENB,0);
+  delay(1000);
+  
+  leyendo_sensor_distancia ();
+  if (distancia>120) 
+  {analogWrite(ENA,55);
+  analogWrite(ENB,45);
+  delay(2000);
+  analogWrite(ENA,0);
+  analogWrite(ENB,0);
+  delay(1000);
+  Serial.println("orientado 1ª");}}
+  else 
+  {
+  Serial.println("wrong distancia girando");
+  analogWrite(ENA,55);
+  analogWrite(ENB,45);
+  delay(500);
+  analogWrite(ENA,0);
+  analogWrite(ENB,0);
+  delay(1000);
+  leyendo_sensor_distancia ();
+  if (distancia>120) 
+  {analogWrite(ENA,55);
+  analogWrite(ENB,45);
+  delay(2000);
+  analogWrite(ENA,0);
+  analogWrite(ENB,0);
+  delay(1000);
+  Serial.println("orientado 2ª");}}
+/*   
+   digitalWrite (IN3, LOW);
+   digitalWrite (IN4, HIGH);
+   digitalWrite (IN1, HIGH);
+   digitalWrite (IN2, LOW);
+ if (distancia < 50)
+{analogWrite(ENA,0);
+  analogWrite(ENB,0);
+  delay (2000);
+  Serial.println("parado ");}
+  else
+ { 
+  analogWrite(ENA,55);
+  analogWrite(ENB,45);
+  Serial.println("girando ");} //antihorario }
+  
+*/
+
+ /*
+ do { analogWrite(ENA,60);
+      analogWrite(ENB,0); }
  while (distancia > 50);
- parar
- 
- do { girar sentido horario }
- while (distancia > 50);
- gira 90º en sentido horario
+   analogWrite(ENA,60);
+   analogWrite(ENB,0); //antihorario 
+   delay (1500);
  
  if (distancia >100)
- {gira 180º en sentido horario}
+ {   analogWrite(ENA,60);
+     analogWrite(ENB,0); //antihorario 
+     delay (3000);}
  
  //comienzo del programa de cargar bolas de forma manual
  
- 
+ */
 
 }
 
@@ -99,7 +155,7 @@ void leyendo_sensor_distancia (){
   delay(500);
 
 }
-
+/*
 void lecturas_sensor_blanco_negro () {
 
 #ifdef _DEBUG_   
@@ -128,11 +184,12 @@ void lecturas_sensor_blanco_negro () {
     else if( sensor2==1 && sensor3 ==1 && sensor4 ==1 ){error=3;}
 
 }
+
 void trayecto-carga_manual () {
 //nota: hay que modificar los pines a los reales.
 
 //hay que cambiar lo que hace el robot, básicamente haremos que vaya recto pero girando para que se vaya apoyando en 
-//la linea negra. Cuando haya visto la linea negra dos veces se parará y girará.
+//la linea negra. Cuando haya visto la linea negra dos veces se pararáy girará.
 
 for (int i=0; i<2; i++)
 {
@@ -175,7 +232,7 @@ if (error ==0) {      //ves recte si es blanc o la línia negra està al centre 
 )
 while (error!=3);
 
-girar 180º en sentido horario
+//girar 180º en sentido horario
 delay (10000); //introducir el tiempo de carga de bolas
 }
-
+*/
